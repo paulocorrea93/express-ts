@@ -1,6 +1,6 @@
 // console.log("Express + TS!!!");
 
-import express from "express";
+import express, {Request, Response} from "express";
 
 const app = express();
 
@@ -9,6 +9,10 @@ app.use(express.json());
 app.get("/", (req, res) => {
   return res.send("Hello Express!");
 });
+
+app.get("/api/product/interfaces", (req: Request, res: Response) => {
+    return res.send("tipando rotas")
+})
 
 app.post("/api/product", (req, res) => {
   console.log(req.body);
