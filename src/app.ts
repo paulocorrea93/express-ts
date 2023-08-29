@@ -14,6 +14,15 @@ app.get("/api/product/interfaces", (req: Request, res: Response) => {
     return res.send("tipando rotas")
 })
 
+app.get("/api/json", (req: Request, res: Response) => {
+    return res.json({
+        "nome": "camisa",
+        "price": 19.99,
+        "stock": true,
+        "sizes": ["P", "M", "G"]
+    })
+})
+
 app.post("/api/product", (req, res) => {
   console.log(req.body);
   return res.send("Produto adicionado.");
