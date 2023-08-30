@@ -98,6 +98,15 @@ app.get("/api/user/:id/details/:name", (req: Request<{id: string, name: string}>
     return res.json({status: true})
 })
 
+app.get("/api/error", (req: Request, res: Response) => {
+  try {
+      throw new Error("Algo deu errado.");
+      
+  } catch (e: any) {
+    res.status(500).json({msg: e.message})
+  }
+})
+
 app.listen(3000, () => {
   console.log("Aprlicação TS + Express funcionando!");
 });
