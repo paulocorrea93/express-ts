@@ -91,6 +91,13 @@ app.all("/api/product/check", (req, res) => {
   }
 });
 
+app.get("/api/user/:id/details/:name", (req: Request<{id: string, name: string}>, res: Response<{status: boolean}>) => {
+    console.log(`ID: ${req.params.id}`)
+    console.log(`Name: ${req.params.name}`)
+
+    return res.json({status: true})
+})
+
 app.listen(3000, () => {
   console.log("Aprlicação TS + Express funcionando!");
 });
