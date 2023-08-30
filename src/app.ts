@@ -6,6 +6,13 @@ const app = express();
 
 app.use(express.json());
 
+function showPath(req: Request, res: Response, next: NextFunction){
+  console.log(req.path)
+  next()
+}
+
+app.use(showPath)
+
 app.get("/", (req, res) => {
   return res.send("Hello Express!");
 });
