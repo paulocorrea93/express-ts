@@ -39,6 +39,13 @@ app.get("/api/product/:id", (req: Request, res: Response) => {
   }
 });
 
+app.get("/api/product/:id/review/:reviewId", (req: Request, res: Response) => {
+  const productId = req.params.id;
+  const reviewId = req.params.reviewId;
+
+  return res.send(`Está é a review: ${reviewId} do produto: ${productId}`)
+})
+
 app.post("/api/product", (req, res) => {
   console.log(req.body);
   return res.send("Produto adicionado.");
