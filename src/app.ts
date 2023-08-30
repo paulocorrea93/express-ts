@@ -1,6 +1,6 @@
 // console.log("Express + TS!!!");
 
-import express, {Request, Response} from "express";
+import express, { Request, Response } from "express";
 
 const app = express();
 
@@ -11,17 +11,33 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/product/interfaces", (req: Request, res: Response) => {
-    return res.send("tipando rotas")
-})
+  return res.send("tipando rotas");
+});
 
 app.get("/api/json", (req: Request, res: Response) => {
-    return res.json({
-        "nome": "camisa",
-        "price": 19.99,
-        "stock": true,
-        "sizes": ["P", "M", "G"]
-    })
-})
+  return res.json({
+    nome: "camisa",
+    price: 19.99,
+    stock: true,
+    sizes: ["P", "M", "G"],
+  });
+});
+
+app.get("/api/product/:id", (req: Request, res: Response) => {
+  const id = req.params.id;
+
+  if (id === "1") {
+    const product = {
+      id: 1,
+      name: "Boné",
+      price: 10.99,
+      stock: true,
+    };
+    return res.json(product)
+  } else {
+    return `Produto não encontrado.`;
+  }
+});
 
 app.post("/api/product", (req, res) => {
   console.log(req.body);
