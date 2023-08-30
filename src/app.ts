@@ -33,7 +33,7 @@ app.get("/api/product/:id", (req: Request, res: Response) => {
       price: 10.99,
       stock: true,
     };
-    return res.json(product)
+    return res.json(product);
   } else {
     return `Produto não encontrado.`;
   }
@@ -43,8 +43,16 @@ app.get("/api/product/:id/review/:reviewId", (req: Request, res: Response) => {
   const productId = req.params.id;
   const reviewId = req.params.reviewId;
 
-  return res.send(`Está é a review: ${reviewId} do produto: ${productId}`)
-})
+  return res.send(`Está é a review: ${reviewId} do produto: ${productId}`);
+});
+
+function routerHandler(req: Request, res: Response) {
+  console.log(`Encontrado usuário ${req.params.id}`);
+
+  return res.send(`Usuário encontrado`);
+}
+
+app.get("/api/user/:id", routerHandler);
 
 app.post("/api/product", (req, res) => {
   console.log(req.body);
