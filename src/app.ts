@@ -1,6 +1,6 @@
 // console.log("Express + TS!!!");
 
-import express, { Request, Response } from "express";
+import express, { NextFunction, Request, Response } from "express";
 
 const app = express();
 
@@ -58,6 +58,21 @@ app.post("/api/product", (req, res) => {
   console.log(req.body);
   return res.send("Produto adicionado.");
 });
+
+function checkUser(req: Request, res: Response, next: NextFunction) {
+  if (req.params.id === "1") {
+    console.log(`Acesso liberado.`);
+    next();
+  } else {
+    console.log(`Acesso restrito.`);
+  }
+}
+
+app.get("/api/user/:id/access", checkUser, (req: Request, res: Response) => {
+  return res.json({
+    msg: "Bem-vindo a área administrativa."
+  })
+})
 
 app.all("/api/product/check", (req, res) => {
   if (req.method === "POST") {
